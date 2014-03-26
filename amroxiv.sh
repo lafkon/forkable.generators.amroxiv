@@ -113,12 +113,15 @@
 # WRITE SVG FILES ACCORDING TO POSSIBLE COMBINATIONS
 # --------------------------------------------------------------------------- #
 
-  ONUM=100
+  ONUM=200
   FINALOUTPUTDIR=o/free/svg
   NONFREEDIR=o/non-free/pdf
 
   SUPPORTER=i/non-free/svg/amroxiv_supporter.svg
+
+  if [ -f $SUPPORTER ]; then
   inkscape --export-pdf=${SUPPORTER%%.*}.pdf $SUPPORTER
+  fi
 
   for KOMBI in `cat $KOMBILIST | sed 's/ /DHSZEJDS/g' | \
                 sort | head -n $ONUM `
@@ -142,21 +145,21 @@
       rm ${OSVG%%.*}.tmp
 
       inkscape --export-pdf=${OSVG%%.*}.pdf $OSVG
+  if [ -f $SUPPORTER ]; then
+
       PDF=${NONFREEDIR}/`basename $OSVG`
-    # pdftk ${SUPPORTER%%.*}.pdf \
-    #       background ${OSVG%%.*}.pdf \
-    #       output ${PDF%%.*}.pdf
       pdftk ${OSVG%%.*}.pdf \
             background ${SUPPORTER%%.*}.pdf \
             output ${PDF%%.*}.pdf
-      rm ${OSVG%%.*}.pdf ${SUPPORTER%%.*}.pdf
+   fi
+      rm ${OSVG%%.*}.pdf
 
   done
 
 # --------------------------------------------------------------------------- #
 # REMOVE TEMP FILES
 # --------------------------------------------------------------------------- #
-  rm ${SVG%%.*}.tmp $KOMBILIST $LAYERLIST $TYPESLIST
+  rm ${SVG%%.*}.tmp $KOMBILIST $LAYERLIST $TYPESLIST ${SUPPORTER%%.*}.pdf
 
 
 

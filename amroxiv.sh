@@ -12,7 +12,7 @@
 #. the Free Software Foundation, either version 3 of the License, or        #
 #. (at your option) any later version.                                      #
 #.                                                                          #
-#. do.sh is distributed in the hope that it will be useful,                 #
+#. amroxiv.sh is distributed in the hope that it will be useful,            #
 #. but WITHOUT ANY WARRANTY; without even the implied warranty of           #
 #. MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                     #
 #. See the GNU General Public License for more details.                     #
@@ -22,7 +22,6 @@
   TMPDIR=tmp
   OUTPUTDIR=tmp
 
-  SVG=i/free/svg/140302--bOUND-14.svg
   SVG=i/free/svg/amroxiv.svg
   MASTERNAME=`basename $SVG | cut -d "." -f 1`
 
